@@ -1,103 +1,47 @@
-from hangman import Hangman
+"""Punto de entrada del juego del ahorcado."""
+
 import csv
 import uuid
 from datetime import datetime
 
-# Dibujos del ahorcado según número de fallos
-HANGMAN_PICS = [
-    """
-       -----
-       |   |
-           |
-           |
-           |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-           |
-           |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-       |   |
-           |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-      /|   |
-           |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-      /|\\  |
-           |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-      /|\\  |
-      /    |
-           |
-    =========
-    """,
-    """
-       -----
-       |   |
-       O   |
-      /|\\  |
-      / \\  |
-           |
-    =========
-    """
-]
+from config import GAMES_FILE, HANGMAN_PICS, MAX_ROUNDS, ROUNDS_FILE, WORDS_FILE
+from hangman import Hangman
 
-# Lee las palabras del CSV y devuelve una lista 
+
 def load_words(filename):
-    with open(filename, encoding="utf-8") as f:
-        return [line.strip() for line in f if line.strip()]
+    """Carga las palabras desde un archivo CSV.
+
+    Args:
+        filename (str): Ruta del archivo.
+
+    Returns:
+        list[str]: Lista de palabras.
+    """
+    with open(filename, encoding="utf-8") as file:
+        return [line.strip() for line in file if line.strip()]
 
 
-# Guarda una partida completa (una fila en games.csv)
 def save_game(game_id, username, start_date, end_date, final_score):
-    with open("games.csv", "a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+    """Guarda los datos de una partida completa."""
+    with open(GAMES_FILE, "a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
         writer.writerow([game_id, username, start_date, end_date, final_score])
 
 
-# Guarda cada ronda jugada
 def save_round(game_id, word, username, round_id, user_trys, victory):
-    with open("rounds_in_games.csv", "a", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
+    """Guarda los datos de una ronda."""
+    with open(ROUNDS_FILE, "a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
         writer.writerow([game_id, word, username, round_id, user_trys, victory])
 
 
-# Ejecuta una ronda completa del juego
 def play_round(game, player_name, round_number, game_id):
+    """Ejecuta una ronda completa del juego."""
     game.start_round()
     round_id = str(uuid.uuid4())
 
     print(f"\n--- Ronda {round_number} ---")
 
-    # Bucle principal: se repite hasta ganar o perder
     while not game.is_won() and not game.is_lost():
         print(HANGMAN_PICS[game.attempts])
         print("\nPalabra:", game.get_display_word())
@@ -112,14 +56,13 @@ def play_round(game, player_name, round_number, game_id):
 
         result = game.guess_letter(letter)
 
-        if result == "correct":
+        if result is True:
             print("¡Correcto!")
-        elif result == "incorrect":
+        elif result is False:
             print("Incorrecto.")
         else:
             print("Ya la has usado.")
 
-    # Resultado
     if game.is_won():
         print("\n¡Has ganado la ronda!")
         victory = True
@@ -142,7 +85,8 @@ def play_round(game, player_name, round_number, game_id):
 
 
 def main():
-    words = load_words("words.csv")
+    """Ejecuta una partida completa."""
+    words = load_words(WORDS_FILE)
 
     if len(words) != 30:
         print("Vaya, parece que no encontramos todas las palabras necesarias.")
@@ -158,17 +102,18 @@ def main():
 
     total_wins = 0
 
-    for i in range(1, 4):
+    for i in range(1, MAX_ROUNDS + 1):
         if play_round(game, player_name, i, game_id):
             total_wins += 1
 
     end_date = datetime.now()
 
-    print(f"\nPartida finalizada. Tu puntuación es: {total_wins}/3 Gracias por jugar, {player_name}.")
+    print(
+        f"\nPartida finalizada. Tu puntuación es: "
+        f"{total_wins}/{MAX_ROUNDS}. Gracias por jugar, {player_name}."
+    )
 
     save_game(game_id, player_name, start_date, end_date, total_wins)
 
-
-# Punto de entrada del programa
 if __name__ == "__main__":
     main()

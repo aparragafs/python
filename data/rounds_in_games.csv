@@ -13,3 +13,6 @@ b77826ee-b94a-425f-8feb-5a46fcc4d7f2,algoritmo,Adrian,417ee776-2b83-423e-a2ba-0e
 265d16a4-81ee-4fb8-b6a2-bf81419c3592,condicional,Hugo,7ae2e2d9-94ba-4a60-9655-13cb98ef8f7e,5,True
 265d16a4-81ee-4fb8-b6a2-bf81419c3592,herencia,Hugo,77ea2e23-fb57-49a1-b27d-a87f0a14e3d5,5,True
 265d16a4-81ee-4fb8-b6a2-bf81419c3592,polimorfismo,Hugo,3b9505c1-a415-4049-9bdd-4d242b52c0e9,1,True
+58e32a3c-b716-4fe6-b175-530482f356f5,algoritmo,Rocio,0d30b493-0474-41a9-8b72-4f24101ecb3d,2,True
+58e32a3c-b716-4fe6-b175-530482f356f5,framework,Rocio,9a9b5206-d41d-4f5d-9726-fd7cf3789736,6,False
+58e32a3c-b716-4fe6-b175-530482f356f5,libreria,Rocio,dd87b2d0-0c7d-48ba-98b6-5b1c1951ff2a,1,True
