@@ -7,3 +7,9 @@ dc827aa6-52d7-4861-b535-05f4bec594d9,archivo,Adrian,2b3b196d-384e-4ced-99ce-905d
 b77826ee-b94a-425f-8feb-5a46fcc4d7f2,compilador,Adrian,c82ffa94-904e-433d-af9a-087cd2bf466e,1,True
 b77826ee-b94a-425f-8feb-5a46fcc4d7f2,entorno,Adrian,a80ad4dc-018d-4a5e-ae20-7272066e3ae4,2,True
 b77826ee-b94a-425f-8feb-5a46fcc4d7f2,algoritmo,Adrian,417ee776-2b83-423e-a2ba-0e414c1cf3f1,2,True
+92ad3eb1-3821-4605-a8d7-a15e8c2e8dca,bucle,Hugo,bf0c24cc-d9b8-4276-97ce-502ca0200849,6,False
+92ad3eb1-3821-4605-a8d7-a15e8c2e8dca,servidor,Hugo,a8e6aa5c-9f23-4701-88b5-8863e644bf71,6,False
+92ad3eb1-3821-4605-a8d7-a15e8c2e8dca,interprete,Hugo,d2bac7bf-5ecd-4cfd-ba83-ca3805b5dc96,1,True
+265d16a4-81ee-4fb8-b6a2-bf81419c3592,condicional,Hugo,7ae2e2d9-94ba-4a60-9655-13cb98ef8f7e,5,True
+265d16a4-81ee-4fb8-b6a2-bf81419c3592,herencia,Hugo,77ea2e23-fb57-49a1-b27d-a87f0a14e3d5,5,True
+265d16a4-81ee-4fb8-b6a2-bf81419c3592,polimorfismo,Hugo,3b9505c1-a415-4049-9bdd-4d242b52c0e9,1,True
